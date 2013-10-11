@@ -24,6 +24,20 @@ Template Name: Fellows Directory
 		<ul class="twelve columns" id="directory">
 
 		<?php $fellows = get_cimyFieldValue(false, 'MEMBERSHIP_TYPE', 'Current Fellow');
+		
+		//Add the last name to the arrays and create temp array for sorting
+		$tmp = Array();
+			foreach ($fellows as $fellow) {
+				$user_id = $fellow['user_id']; 
+				$sorter = get_the_author_meta( 'last_name', $user_id );
+				$fellow['last_name'] = $sorter;
+				$tmp[] = $sorter;
+			}
+		
+		//Sort full array by temp last name array			
+			array_multisort($tmp, $fellows);
+			
+			
 			foreach ($fellows as $fellow) {
 				$user_id = $fellow['user_id']; 
 				$photo = get_cimyFieldValue($user_id, 'USER_PHOTO');
