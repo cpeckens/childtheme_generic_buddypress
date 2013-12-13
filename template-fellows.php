@@ -35,8 +35,7 @@ Template Name: Fellows Directory
 			}
 		
 		//Sort full array by temp last name array			
-			array_multisort($tmp, $fellows);
-			
+			array_multisort($tmp, $fellows);			
 			
 			foreach ($fellows as $fellow) {
 				$user_id = $fellow['user_id']; 
